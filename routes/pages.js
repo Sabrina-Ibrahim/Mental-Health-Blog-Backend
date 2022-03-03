@@ -39,6 +39,25 @@ router.post('/:userId/:pageId/newsfeed', async (req, res) => {
     }
 })
 
+//DELETE - Single user post by id
+router.delete('/delete/:pageId/:userId/:commentId', async (req, res) => {
+    try {
+        const page = await Page.findById(req.params.pageId);
+        if (!page) return res.status(400).send(`The user with id "${req.params.pageId}" comment does not exist.`);
+
+        let Usercomment = page.newsfeed.id(req.params.commentId);
+        if (!Usercomment) return res.status(400).send(`The comment with id "${req.params.commentId}" does not exist.`);
+
+        Usercomment = await Usercomment.remove();
+
+        await page.save();
+        return res.send(page);
+    }
+    catch (err) {
+        return res.status(500).send(`Internal Server Error: ${err}`);
+    };
+})
+
 
 //Endpoint and handlers
 
