@@ -2,12 +2,6 @@ const express = require('express');
 const { User } = require('../models/user');
 const router = express.Router();
 
-//Functions
-// populateByUserName = async (name) => {
-//     let userName = await Comment.find({ userName: name })
-//     return userName;
-// }
-
 //GET User's Personal Posts
 // router.get('/api/users', async (req, res) => {
 //     try {
