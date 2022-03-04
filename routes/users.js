@@ -1,6 +1,7 @@
 const express = require('express');
 const { User } = require('../models/user');
 const router = express.Router();
+const { Page } = require('../models/page');
 
 //GET User's Personal Posts
 // router.get('/api/users', async (req, res) => {
@@ -16,15 +17,15 @@ const router = express.Router();
 // });
 
 //GET All Users Posts
-// router.get('/', async (req, res) => {
-//     try {
-//         const users = await User.find();
+router.get('/:pageId', async (req, res) => {
+    try {
+        const page = await Page.findById(req.params.pageId);
 
-//         return res.send(users);
-//     } catch (err) {
-//         return res.status(500).send(`Internal Server Error: ${err}`);
-//     }
-// });
+        return res.send(page);
+    } catch (err) {
+        return res.status(500).send(`Internal Server Error: ${err}`);
+    }
+});
 
 //POST - Register New User 
 router.post('/', async (req, res) => {
