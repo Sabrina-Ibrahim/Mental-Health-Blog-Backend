@@ -5,6 +5,8 @@ const { Comments } = require('../models/comment');
 const { Page } = require('../models/page');
 const { User } = require('../models/user');
 
+
+//POST - Create a new page
 router.post('/newpage', async (req, res) => {
     try {
         const page = new Page({
@@ -47,6 +49,14 @@ router.post('/:userId/:pageId/newsfeed', async (req, res) => {
         return res.status(500).send(`Internal Server Error: ${err}`);
     }
 })
+
+
+
+
+
+
+
+
 
 //DELETE - Single user post by id
 router.delete('/delete/:pageId/:userId/:commentId', async (req, res) => {
