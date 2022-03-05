@@ -2,21 +2,25 @@ const express = require('express');
 const { User } = require('../models/user');
 const router = express.Router();
 const { Page } = require('../models/page');
+const { response } = require('express');
+//const { Comments } = require('../models/comment');
 
-//GET User's Personal Posts
-// router.get('/api/users', async (req, res) => {
-//     try {
-//         const comments = await Comments.find({ ownedBy: req.params.name })
-//         if (!userName) return res.status(400).send(`The username with id "${req.params.name} does not exist.`)
 
-//         return res.send(comments);
-//     }
-//     catch (err) {
-//         return res.status(500).send(`Internal Server Error: ${err}`);
-//     }
-// });
+//GET User's Personal Posts 
+router.get('/:userId/myPosts', async (req, res) => {
+    try {
+        let user = await User.findOne({ _id: req.params.userId }).populate('myPosts');
+        let myPosts = user.myPosts
 
-//GET All Users Posts
+        return res.send(myPosts);
+    }
+    catch (err) {
+        return res.status(500).send(`Internal Server Error: ${err}`);
+    }
+})
+
+
+//GET All Users Posts on pages
 router.get('/:pageId', async (req, res) => {
     try {
         const page = await Page.findById(req.params.pageId);

@@ -8,6 +8,7 @@ const commentsSchema = new mongoose.Schema({
     posted: { type: Date, default: Date.now },
     likeCount: { type: Number, default: 0 },
     reply: { type: String, minlength: 1, maxlength: 1000 },
+    pageName: { type: String, minlength: 1 },
 });
 
 //Create model with previously defined schema (doorway into our MongoDB Collection)

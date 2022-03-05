@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     //password: { type: String, required: true, minlength: 7, maxlength: 15 },
 
     dateModified: { type: Date, default: Date.now },
+    myPosts: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }] //only saving the array of comments made by their comment id. 
 });
 
 //Create model with previously defined schema (doorway into our MongoDB Collection)

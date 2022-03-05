@@ -6,7 +6,7 @@ const { commentsSchema } = require('./comment');
 //Defining pages schema
 const pagesSchema = new mongoose.Schema({
     titleName: { type: String, required: true },
-    newsfeed: { type: [commentsSchema], default: [] },
+    newsfeed: [{ type: mongoose.Types.ObjectId, ref: 'User', default: [] }],
 });
 
 //Create model with previously defined schema (doorway into our MongoDB Collection)
