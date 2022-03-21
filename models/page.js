@@ -1,7 +1,6 @@
 //Import dependencies 
 const mongoose = require('mongoose'); //db structure 
 const { commentsSchema } = require('./comment');
-//const { type } = require('os');
 
 //Defining pages schema
 const pagesSchema = new mongoose.Schema({
